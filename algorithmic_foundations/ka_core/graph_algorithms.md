@@ -67,3 +67,51 @@ fn topological_sort(adj_list: Vec<Vec<usize>>) -> Vec<usize> {
 
 ## usecase
 プロジェクトのタスク管理、スプレッドシートのセル計算順序の決定、コンパイラのタスク実行順序など、依存関係に基づく順序付けが必要な多くの場面で使用される。
+
+
+# Knuth–Morris–Pratt algorithm
+
+## Explain a prototypical example of the algorithm
+- 文字列 "ABC ABCDAB ABCDABCDABDE" で "ABCDABD" を検索する例。失敗した後の再検索を最適化し、不必要な比較を省略。
+
+```rust
+fn kmp_search(text: &str, pattern: &str) -> Option<usize> {
+    let (n, m) = (text.len(), pattern.len());
+    let mut pi = vec![0; m];
+    let mut j = 0;
+
+    // パターンの部分一致テーブルを作成
+    for i in 1..m {
+        while j > 0 && &pattern[j] != &pattern[i] {
+            j = pi[j - 1];
+        }
+        if &pattern[j] == &pattern[i] {
+            j += 1;
+            pi[i] = j;
+        }
+    }
+
+    let mut k = 0;
+    // テキストを走査してパターンを検索
+    for i in 0..n {
+        while k > 0 && &pattern[k] != &text[i] {
+            k = pi[k - 1];
+        }
+        if &pattern[k] == &text[i] {
+            if k == m - 1 {
+                return Some(i - m + 1); // パターンが一致した開始インデックスを返す
+            }
+            k += 1;
+        }
+    }
+
+    None // 一致するパターンがなかった場合
+}
+```
+
+## Explain step-by-step how the algorithm operates.
+- 文字列を検索し、パターンが不一致になった場合、前回一致した情報を利用して、次の検索開始位置を決定。
+- 不一致が発生した場合、前回一致した部分に基づいて検索開始位置を調整し、検索を継続。
+
+## usecase
+- テキスト内でのサブ文字列検索に使用。特に、データが大量にある場合や、特定のパターンを高速に検出する必要がある場面で有効。
