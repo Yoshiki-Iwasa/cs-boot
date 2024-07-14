@@ -84,3 +84,97 @@ fn floyd_warshall(weights: &Vec<Vec<i32>>) -> Vec<Vec<i32>> {
 ## Explain factors beyond computational efficiency that influence the choice of algorithms, such as programming time, maintainability, and the use of application-specific patterns in the input data.
 
 このアルゴリズムは実装が比較的単純であり、すべての最短経路を一度に計算できるため、多くの実用的なシナリオで有効です。
+
+# Minimum spanning tree
+
+## explain its definition, properties, representation(s), and associated ADT operations.
+- 最小全域木（MST）は、与えられた連結で重み付きの無向グラフにおいて、全ての頂点を最小の合計エッジ重みでつなぐエッジのサブセット。
+- MSTはサイクルを含まず、グラフの全頂点を含む。
+- 重要な性質として、MSTの全エッジの重みの合計が最小であること。
+- MSTを見つけるアルゴリズムには、プリムのアルゴリズムやクラスカルのアルゴリズムがある。
+
+## explain step-by-step how the ADT operations associated with the data structure transform it.
+- プリムのアルゴリズム: 頂点を一つ選び、最小の重みのエッジを選んで成長させることでMSTを構築。
+- クラスカルのアルゴリズム: 全エッジを重みの順にソートし、サイクルを形成しないようにエッジを選択してMSTを構築。
+
+## For each algorithmic approach, apply a prototypical example of the approach
+```rust
+use std::collections::HashSet;
+
+fn kruskal(nodes: usize, edges: Vec<(i32, usize, usize)>) -> Vec<(i32, usize, usize)> {
+    let mut parent = (0..nodes).collect::<Vec<_>>();
+    let mut rank = vec![0; nodes];
+
+    fn find(parent: &mut Vec<usize>, i: usize) -> usize {
+        if parent[i] != i {
+            parent[i] = find(parent, parent[i]);
+        }
+        parent[i]
+    }
+
+    fn union(parent: &mut Vec<usize>, rank: &mut Vec<i32>, x: usize, y: usize) {
+        let xroot = find(parent, x);
+        let yroot = find(parent, y);
+        if rank[xroot] < rank[yroot] {
+            parent[xroot] = yroot;
+        } else if rank[xroot] > rank[yroot] {
+            parent[yroot] = xroot;
+        } else {
+            parent[yroot] = xroot;
+            rank[xroot] += 1;
+        }
+    }
+
+    let mut result = vec![];
+    let mut e = 0;
+    let mut i = 0;
+    let mut sorted_edges = edges;
+    sorted_edges.sort_by_key(|k| k.0);
+
+    while e < nodes - 1 && i < sorted_edges.len() {
+        let (weight, u, v) = sorted_edges[i];
+        i += 1;
+        let x = find(&mut parent, u);
+        let y = find(&mut parent, v);
+        if x != y {
+            result.push((weight, u, v));
+            union(&mut parent, &mut rank, x, y);
+            e += 1;
+        }
+    }
+    result
+}
+```
+
+## Given requirements for a problem, develop multiple solutions using various data structures and algorithms. Subsequently, evaluate the suitability, strengths, and weaknesses selecting an approach that best satisfies the requirements.
+
+- ネットワーク設計、回路設計、森林管理など、様々な分野での応用が可能。
+- クラスカルのアルゴリズムはエッジが少ないグラフに効果的、プリムのアルゴリズムは密なグラフに適している。
+
+## Explain factors beyond computational efficiency that influence the choice of algorithms, such as programming time, maintainability, and the use of application-specific patterns in the input data.
+
+- アルゴリズムの選択は、グラフの種類（密または疎）、利用可能なデータ構造、特定のアプリケーションの要件に依存する。
+- 実装の複雑さ、メンテナンスのしやすさも重要な要素であり、効率だけでなくこれらの要素を考慮する必要がある。
+
+### クラスカル法とプリム法の比較
+
+#### クラスカル法
+- **基本アプローチ**: エッジ中心。全エッジをコストの昇順でソートし、サイクルを形成しないものを順に選択。
+- **データ構造**: 重み付きエッジリストとユニオンファインド。
+- **適用性**: エッジが比較的少ない疎なグラフに効果的。
+- **計算コスト**: O(E log E) で、E はエッジの数。
+
+#### プリム法
+- **基本アプローチ**: 頂点中心。開始頂点を選び、接続された最小のエッジを持つ頂点を順に選択していく。
+- **データ構造**: 隣接リストと優先度付きキュー（通常はバイナリヒープ）。
+- **適用性**: 頂点の数が多い密なグラフに適している。
+- **計算コスト**: O((V + E) log V) で、V は頂点の数、E はエッジの数。
+
+#### 共通点
+- どちらも非負のエッジ重みを持つ無向グラフで最小全域木を求めるアルゴリズム。
+- 最終的な最小全域木の重みの合計は同じ。
+
+#### 選択の基準
+- クラスカル法はエッジの数が少ないとき、つまり疎なグラフで効率的。
+- プリム法は頂点が密接に結ばれている場合（密なグラフ）に効率的。
+- 使用するデータ構造によるメモリ使用量と処理速度の違いも選択の要因となる。
