@@ -121,3 +121,6 @@ fn main() {
     }
 }
 ```
+
+# Boyer-Moore
+CTRL-Fで見つけるときに使う

@@ -16,3 +16,8 @@
 ## Given requirements for a problem, develop multiple solutions using various data structures and algorithms. Subsequently, evaluate the suitability, strengths, and weaknesses selecting an approach that best satisfies the requirements.
 - 問題に応じて複数のデータ構造やアルゴリズムを用いて解決策を考える。
 - それぞれのアプローチの適合性、強み、弱みを評価し、要件を最も満たす方法を選択する。
+
+# 講義ノート
+数学的な集合を表す"set"
+
+SetとMultiSet(重複を許すセット)

@@ -107,3 +107,9 @@ fn breadth_first_search(graph: &Vec<Vec<usize>>, start: usize) -> Vec<usize> {
 
 - メモリ使用: 大規模グラフではメモリ消費が増大。
 - 実装の簡潔さ: BFSは実装が直感的で理解しやすいが、キュー管理に注意が必要。
+
+
+# 講義ノート
+uninformed search と informed search
+
+Iterative Deepning について調べる

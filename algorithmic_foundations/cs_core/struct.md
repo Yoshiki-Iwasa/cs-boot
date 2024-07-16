@@ -1,4 +1,4 @@
-# Struct
+# Struct (Class)
 
 https://en.wikipedia.org/wiki/Struct_(C_programming_language)
 調べるとなぜか`in C`で出てくるが、だいたいどの言語も同じなのでC言語で考えてみる

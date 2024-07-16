@@ -83,7 +83,7 @@ fn floyd_warshall(weights: &Vec<Vec<i32>>) -> Vec<Vec<i32>> {
 
 ## Explain factors beyond computational efficiency that influence the choice of algorithms, such as programming time, maintainability, and the use of application-specific patterns in the input data.
 
-このアルゴリズムは実装が比較的単純であり、すべての最短経路を一度に計算できるため、多くの実用的なシナリオで有効です。
+このアルゴリズムは実装が比較的単純であり、すべての最短経路を一度に計算できるため、多くの実用的なシナリオで有効。
 
 # Minimum spanning tree
 
@@ -178,3 +178,20 @@ fn kruskal(nodes: usize, edges: Vec<(i32, usize, usize)>) -> Vec<(i32, usize, us
 - クラスカル法はエッジの数が少ないとき、つまり疎なグラフで効率的。
 - プリム法は頂点が密接に結ばれている場合（密なグラフ）に効率的。
 - 使用するデータ構造によるメモリ使用量と処理速度の違いも選択の要因となる。
+
+ダイクストラ
+直感的には、Aから一番近い点を確定させていく感じ
+
+ワーシャルフロイド
+
+最小全域木
+周辺の国とケーブルつなぎたいけど、どの経路でつなぐと一番安くすむか
+
+プリム法
+点を用意する
+エッジを評価して、小さい方を確定させる
+確定したところから伸びているエッジをさらに評価する
+
+これを繰り返す
+
+クラスカル法
