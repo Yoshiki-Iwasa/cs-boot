@@ -1,3 +1,4 @@
+# 知らなくていいらしい
 # Little-o, Little-Omega, and Little Theta notations
 
 ## Little-o

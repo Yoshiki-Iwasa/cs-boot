@@ -12,7 +12,6 @@ NP-completeがPに属するかいなか
 
 ## Explain the significance of NP-Completeness.
 
-
 - NP完全問題の重要性を説明する。
   - NP完全問題は、他のすべてのNP問題が多項式時間で帰着可能な最も困難な問題のクラスに属する。
   - NP完全問題を効率的に解くことができれば、すべてのNP問題も効率的に解けることになる。

@@ -17,3 +17,9 @@
 
 ## Explain various approaches for addressing computational problems whose algorithmic solutions are exponential.
 - 効率的なアルゴリズム（例: 分岐限定法）、ヒューリスティックまたは近似アルゴリズムを使って解決する手法がある。これにより、計算時間を抑えることが可能。
+
+# 講義
+脳筋探索
+ヒューリスティックな方法で近似する方法はあるが、効率的な方法はない
+13!=62億
+3GHzでCPUが動くから、1命令1探索なら2秒くらいで解ける

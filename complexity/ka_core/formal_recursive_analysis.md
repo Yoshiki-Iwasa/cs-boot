@@ -15,7 +15,7 @@
 - アルゴリズムの時間および空間計算量の上限を示すためにBig-O記法を適用する。
 - Big-O記法は、アルゴリズムの最悪の場合の計算量を表現するための標準的な方法である。
 
-## Explain the Cook-Levin Theorem and the NP-Completeness of SAT.
+## Explain the Cook-Levin Theorem and   the NP-Completeness of SAT.
 
 - クック-レヴィンの定理とSAT問題のNP完全性を説明する。
 - クック-レヴィンの定理は、SAT問題がNP完全であることを示し、他の多くの問題がNP完全であることの基礎となる。

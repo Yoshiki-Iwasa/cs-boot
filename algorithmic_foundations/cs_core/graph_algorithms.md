@@ -195,3 +195,4 @@ fn kruskal(nodes: usize, edges: Vec<(i32, usize, usize)>) -> Vec<(i32, usize, us
 これを繰り返す
 
 クラスカル法
+最も安い辺から順に取っていって、すでにつながっていないところをつなげていく方法

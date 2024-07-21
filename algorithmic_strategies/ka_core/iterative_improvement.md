@@ -1,4 +1,5 @@
 # Iterative improvement (e.g., Ford-Fulkerson, simplex) #43
+(焼きなまし法)
 
 ## Explain its definitional characteristics
 - **反復改善**：初期解からスタートして、解を段階的に改善していくアルゴリズムのパラダイム。各ステップで現在の解を評価し、より良い解が見つかるまで反復処理を続ける。
