@@ -50,6 +50,7 @@ int main(int argc, char *argv[]) {
         socklen_t client_addr_len = sizeof(client_addr);
         connection_sock = check(accept(listen_sock, (struct sockaddr *)&client_addr, &client_addr_len), "Failed to establish connection");
         while ((bytes_received = recv(connection_sock, buffer, BUFFER_SIZE, 0)) > 0) {
+            print_buffer("Received: ", buffer, bytes_received);
             int bytes_sent = 0;
             while (bytes_sent < bytes_received) {
                 int sent_now = send(connection_sock, buffer + bytes_sent, bytes_received - bytes_sent, 0);

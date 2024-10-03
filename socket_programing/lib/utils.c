@@ -56,3 +56,11 @@ int set_ip_port(const char *ip_str, const uint16_t port ,struct sockaddr_in6 *ad
 
     return -1; // どちらも失敗した場合
 }
+
+void print_buffer(const char* prefix, const char *buffer, size_t l) {
+    printf("%s", prefix);
+    for (size_t i = 0; i < l; i++) {
+        putchar(buffer[i]);
+    }
+    putchar('\n');
+}
