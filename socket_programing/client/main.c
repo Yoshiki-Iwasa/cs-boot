@@ -41,7 +41,6 @@ int main(int argc, char *argv[]) {
 
 
     while ((bytes_read = read(STDIN_FILENO, read_buffer, BUFFER_SIZE)) > 0) {
-        printf("read %d\n", bytes_read);
         int bytes_sent = 0;
         while (bytes_sent < bytes_read) {
             int sent_now = send(connection_sock, read_buffer + bytes_sent, bytes_read - bytes_sent, 0);

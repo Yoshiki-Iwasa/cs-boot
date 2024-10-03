@@ -26,7 +26,6 @@ int main(int argc, char *argv[]) {
     struct sockaddr_in6 server_addr, client_addr;
     char buffer[BUFFER_SIZE] = { 0 };
 
-    // port_number = atoi(port); // TODO: 16bit符号なし整数への丁寧な変換を行う
     signal(SIGSEGV, signal_handler);
     listen_sock = check(socket(AF_INET6, SOCK_STREAM, 0), "Failed to create socket"); // IPv6, tcpのソケットを作成
 
