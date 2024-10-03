@@ -62,5 +62,4 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Failed to receive message");
     }
     close(connection_sock);
-
 }

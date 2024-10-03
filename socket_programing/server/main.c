@@ -70,13 +70,4 @@ int main(int argc, char *argv[]) {
 
     check(close(connection_sock), "Failed to close connection socket properly");
     check(close(listen_sock), "Failed to close listen socket properly");
-
-
-
-
-
-
-
-
-
 }
